@@ -11,12 +11,13 @@ import 'package:angular_app/src/model/cell.dart';
 class AppComponent implements OnInit {
   final GradientService _gradientService;
   AppComponent(this._gradientService);
-  int n = 10;
-  List<Cell> gradient;
+
+  int n = 20;
+
+  List<List<Cell>> gradient;
   void ngOnInit() => _getGradient();
-  
+
   void _getGradient() {
     gradient = _gradientService.createGradient(n);
-    gradient.forEach((cell) => print(cell.colorValue));
   }
 }

@@ -1,3 +1,5 @@
-<h1>Hello</h1>
-    <cell *ngFor="let cell of gradient" [cell]="cell"></cell>
-<div>Alma</div>
+<div>
+    <div style="float: left" *ngFor="let row of gradient">
+        <cell *ngFor="let cell of row" [cell]="cell"></cell>
+    </div>
+</div>

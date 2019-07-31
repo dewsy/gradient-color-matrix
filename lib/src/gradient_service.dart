@@ -18,11 +18,15 @@ class GradientService {
     return colorValues;
   }
 
-  List<Cell> createGradient(int n) {
-    List<Cell> gradient = List();
+  List<List<Cell>> createGradient(int n) {
+    List<List<Cell>> gradient = List(n);
     List<String> colorValues = _getColors(n);
-    for (String value in colorValues) {
-      gradient.add(Cell(value));
+    for (int i = 0; i < n; i++) {
+      List<Cell> row = List(n);
+      for (int k = 0; k < n; k++) {
+        row[k] = Cell(colorValues[k + i]);
+      }
+      gradient[i] = row;
     }
     return gradient;
   }
