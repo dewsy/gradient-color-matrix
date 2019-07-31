@@ -1,15 +1,17 @@
 import 'package:angular/core.dart';
+import 'model/cell.dart';
 
 @Component(selector: 'cell', template: '''
 <div style="width:{{getSizeProperty()}};height:{{getSizeProperty()}};background-color: {{getColorProperty()}};">{{message}}</div>
 ''')
 class CellComponent {
   int size = 30;
-  String colorValue;
+
   String message = null;
 
-  CellComponent(this.colorValue);
+  @Input()
+  Cell cell;
 
   String getSizeProperty() => size.toString() + "px";
-  String getColorProperty() => "gb($colorValue)";
+  String getColorProperty() => "rgb(${cell.colorValue})";
 }

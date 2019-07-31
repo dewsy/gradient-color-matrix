@@ -1,6 +1,7 @@
 import 'package:angular/angular.dart';
 import 'package:angular_app/src/gradient_service.dart';
-import 'package:angular_app/src/model/cell_component.dart';
+import 'package:angular_app/src/cell_component.dart';
+import 'package:angular_app/src/model/cell.dart';
 
 @Component(
     selector: 'my-app',
@@ -10,9 +11,12 @@ import 'package:angular_app/src/model/cell_component.dart';
 class AppComponent implements OnInit {
   final GradientService _gradientService;
   AppComponent(this._gradientService);
-  int n = 20;
-  List<List<CellComponent>> gradient;
+  int n = 10;
+  List<Cell> gradient;
   void ngOnInit() => _getGradient();
-
-  List<List<CellComponent>> _getGradient() => _gradientService.createGradient(n);
+  
+  void _getGradient() {
+    gradient = _gradientService.createGradient(n);
+    gradient.forEach((cell) => print(cell.colorValue));
+  }
 }
