@@ -1,2 +1,3 @@
-<size-input></size-input>
-<gradient></gradient>
+<input [(ngModel)]="size">
+<h2>{{size}}</h2>
+<gradient [size]="size"></gradient>

@@ -12,12 +12,13 @@ class GradientComponent implements OnInit {
   final GradientService _gradientService;
   GradientComponent(this._gradientService);
 
-  int n = 20;
+  @Input()
+  int size;
 
   List<List<Cell>> gradient;
   void ngOnInit() => _getGradient();
 
   void _getGradient() {
-    gradient = _gradientService.createGradient(n);
+    gradient = _gradientService.createGradient(size);
   }
 }
