@@ -10,7 +10,7 @@ class GradientService {
   List<String> _getColors(int n) {
     List<String> colorValues = [];
     int steps = _calculateSteps(n);
-    for (int i = 0; i <= steps; i++) {
+    for (int i = steps; i >= 0; i--) {
       String gradientValue = (PRIMARYCOLOR * (i / steps)).toString();
       String value = '${PRIMARYCOLOR.toString()},$gradientValue,$gradientValue';
       colorValues.add(value);
@@ -25,6 +25,7 @@ class GradientService {
       List<Cell> row = List(n);
       for (int k = 0; k < n; k++) {
         row[k] = Cell(colorValues[k + i]);
+        print('row $i item $k color: ${row[k].colorValue}');
       }
       gradient[i] = row;
     }
