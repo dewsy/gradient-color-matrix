@@ -6,7 +6,6 @@ import 'model/cell.dart';
 ''')
 class CellComponent {
 
-
   String message = null;
 
   @Input()
