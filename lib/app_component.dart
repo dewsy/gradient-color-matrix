@@ -13,5 +13,5 @@ import 'src/gradient_component.dart';
   ClassProvider(GradientService)
 ])
 class AppComponent {
-  int size = 19;
+  int size = 40;
 }

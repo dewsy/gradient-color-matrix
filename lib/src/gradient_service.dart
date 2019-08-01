@@ -2,6 +2,7 @@ import 'package:angular_app/src/model/cell.dart';
 
 class GradientService {
   static final int PRIMARYCOLOR = 255;
+  List<int> horizontalCharCodes = [64];
 
   int _calculateSteps(int n) {
     return (n * 2) - 2;
@@ -19,23 +20,19 @@ class GradientService {
   }
 
   List<List<Cell>> createGradient(int n) {
-    int horizontalCounter = 1;
     List<List<Cell>> gradient = List(n + 1);
     gradient[0] = _createVerticalMarker(n);
     List<String> colorValues = _getColors(n);
     for (int i = 0; i < n; i++) {
       List<Cell> row = List(n + 1);
-      row[0] = Cell.withMessage(horizontalCounter.toString());
-      horizontalCounter++;
+      row[0] = Cell.withMessage(_createHorizontalMarkerString());
       for (int k = 0; k < n; k++) {
-        row[k+1] = Cell.withColor(colorValues[k + i]);
+        row[k + 1] = Cell.withColor(colorValues[k + i]);
       }
       gradient[i + 1] = row;
     }
     return gradient;
   }
-
-  int _getHorizontalCount(int count) {}
 
   List<Cell> _createVerticalMarker(int n) {
     List<Cell> marker = List(n + 1);
@@ -44,5 +41,24 @@ class GradientService {
       marker[i] = Cell.withMessage(i.toString());
     }
     return marker;
+  }
+
+  String _createHorizontalMarkerString() {
+    bool gotIncremented = false;
+    for (int i = 0; i < horizontalCharCodes.length; i++) {
+      if (gotIncremented) {
+        break;
+      }
+      if (horizontalCharCodes[i] < 90) {
+        horizontalCharCodes[i]++;
+        gotIncremented = true;
+      } else {
+        horizontalCharCodes[i] = 65;
+      }
+    }
+    if (!gotIncremented) {
+      horizontalCharCodes.add(65);
+    }
+    return String.fromCharCodes(horizontalCharCodes.reversed.toList());
   }
 }
