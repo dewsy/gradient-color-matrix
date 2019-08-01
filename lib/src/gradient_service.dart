@@ -19,16 +19,30 @@ class GradientService {
   }
 
   List<List<Cell>> createGradient(int n) {
-    List<List<Cell>> gradient = List(n);
+    int horizontalCounter = 1;
+    List<List<Cell>> gradient = List(n + 1);
+    gradient[0] = _createVerticalMarker(n);
     List<String> colorValues = _getColors(n);
     for (int i = 0; i < n; i++) {
-      List<Cell> row = List(n);
+      List<Cell> row = List(n + 1);
+      row[0] = Cell.withMessage(horizontalCounter.toString());
+      horizontalCounter++;
       for (int k = 0; k < n; k++) {
-        row[k] = Cell(colorValues[k + i]);
-        print('row $i item $k color: ${row[k].colorValue}');
+        row[k+1] = Cell.withColor(colorValues[k + i]);
       }
-      gradient[i] = row;
+      gradient[i + 1] = row;
     }
     return gradient;
+  }
+
+  int _getHorizontalCount(int count) {}
+
+  List<Cell> _createVerticalMarker(int n) {
+    List<Cell> marker = List(n + 1);
+    marker[0] = Cell();
+    for (int i = 1; i < marker.length; i++) {
+      marker[i] = Cell.withMessage(i.toString());
+    }
+    return marker;
   }
 }

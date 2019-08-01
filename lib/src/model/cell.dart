@@ -1,6 +1,9 @@
-class Cell{
-  String colorValue;
+class Cell {
+  String colorValue = "255,255,255";
   int size = 30;
-  
-  Cell(this.colorValue);
+  String message = null;
+
+  Cell();
+  Cell.withColor(this.colorValue);
+  Cell.withMessage(this.message);
 }
