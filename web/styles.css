@@ -7,6 +7,14 @@
   float: left;
 }
 
+#gradient {
+  white-space: nowrap;
+  width: 70%;
+  height: 70%;
+  overflow-x: scroll;
+  overflow-y: scroll;
+}
+
 
 /* Master Styles */
 h1 {
