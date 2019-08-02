@@ -31,6 +31,7 @@ class GradientService {
       }
       gradient[i + 1] = row;
     }
+    horizontalCharCodes = [64];
     return gradient;
   }
 

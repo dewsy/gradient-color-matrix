@@ -14,4 +14,15 @@ import 'src/gradient_component.dart';
 ])
 class AppComponent {
   int size = 20;
+  int sizeInput = null;
+  bool isSizeRight = true;
+
+  void onSubmit() {
+    if (sizeInput < 2 || sizeInput > 100) {
+      isSizeRight = false;
+    } else {
+      isSizeRight = true;
+      size = sizeInput;
+    }
+  }
 }

@@ -1,3 +1,8 @@
-<input [(ngModel)]="size">
-<h2>{{size}}</h2>
-<gradient [size]="size"></gradient>
+<form>
+    <input type="number" [(ngModel)]="sizeInput">
+    <input type="button" value="Submit" (click)="onSubmit()">
+</form>
+<div [ngSwitch]="isSizeRight">
+    <gradient *ngSwitchCase="true" [size]=" size"></gradient>
+    <div *ngSwitchCase="false">Your input must be between 2-100</div>
+</div>

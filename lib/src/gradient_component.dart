@@ -8,7 +8,7 @@ import 'package:angular_app/src/model/cell.dart';
     templateUrl: "gradient_component.html",
     directives: [coreDirectives, CellComponent],
     providers: [ClassProvider(GradientService)])
-class GradientComponent implements OnInit {
+class GradientComponent implements OnInit, AfterChanges {
   final GradientService _gradientService;
   GradientComponent(this._gradientService);
 
@@ -17,6 +17,8 @@ class GradientComponent implements OnInit {
 
   List<List<Cell>> gradient;
   void ngOnInit() => _getGradient();
+
+  void ngAfterChanges() => _getGradient();
 
   void _getGradient() {
     gradient = _gradientService.createGradient(size);
