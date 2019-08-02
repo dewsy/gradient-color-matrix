@@ -21,7 +21,7 @@ class GradientService {
 
   List<List<Cell>> createGradient(int n) {
     List<List<Cell>> gradient = List(n + 1);
-    gradient[0] = _createVerticalMarker(n);
+    gradient[0] = _createVerticalMarkers(n);
     List<String> colorValues = _getColors(n);
     for (int i = 0; i < n; i++) {
       List<Cell> row = List(n + 1);
@@ -35,7 +35,7 @@ class GradientService {
     return gradient;
   }
 
-  List<Cell> _createVerticalMarker(int n) {
+  List<Cell> _createVerticalMarkers(int n) {
     List<Cell> marker = List(n + 1);
     marker[0] = Cell();
     for (int i = 1; i < marker.length; i++) {
