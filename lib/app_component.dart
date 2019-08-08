@@ -1,5 +1,4 @@
 import 'package:angular/angular.dart';
-import 'package:angular_app/src/gradient_service.dart';
 import 'package:angular_app/src/cell_component.dart';
 import 'package:angular_forms/angular_forms.dart';
 import 'src/gradient_component.dart';
@@ -9,8 +8,6 @@ import 'src/gradient_component.dart';
   formDirectives,
   CellComponent,
   GradientComponent,
-], providers: [
-  ClassProvider(GradientService)
 ])
 class AppComponent {
   int size = 20;
