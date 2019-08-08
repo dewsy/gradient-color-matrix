@@ -17,18 +17,23 @@ void main() {
   tearDown(disposeAnyRunningTest);
 
   test('Check for default size', () {
-    expect(fixture.assertOnlyInstance.size, 20);
+    expect(fixture.assertOnlyInstance.size, equals(20));
   });
 
-  test('Check for too low input value', () async {
-    await fixture.update((c) => c.size = 1);
-    fixture.assertOnlyInstance.onSubmit();
-    expect(fixture.assertOnlyInstance.isSizeRight, false);
+  test('Check validation on too low input value', () async {
+    await fixture.update((c) => c.sizeInput = 1);
+    await fixture.assertOnlyInstance.onSubmit();
+    expect(fixture.assertOnlyInstance.isSizeRight, equals(false));
   });
 
-  test('Check for too high input value', () async {
-    await fixture.update((c) => c.size = 101);
-    fixture.assertOnlyInstance.onSubmit();
-    expect(fixture.assertOnlyInstance.isSizeRight, false);
+  test('Check validation on right low input value', () async {
+    await fixture.update((c) => c.sizeInput = 30);
+    await fixture.assertOnlyInstance.onSubmit();
+    expect(fixture.assertOnlyInstance.isSizeRight, equals(true));
+  });
+  test('Check validation on too high input value', () async {
+    await fixture.update((c) => c.sizeInput = 101);
+    await fixture.assertOnlyInstance.onSubmit();
+    expect(fixture.assertOnlyInstance.isSizeRight, equals(false));
   });
 }
