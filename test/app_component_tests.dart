@@ -1,11 +1,11 @@
+@TestOn('browser')
+
+import 'package:angular_test/angular_test.dart';
 import 'package:angular_app/app_component.dart';
-import 'dart:html';
+import 'package:angular_app/app_component.template.dart' as ng;
 import 'package:test/test.dart';
 
 void main() {
-  AppComponent appComponent = AppComponent();
-
-/*
   final testBed =
       NgTestBed.forComponent<AppComponent>(ng.AppComponentNgFactory);
   NgTestFixture<AppComponent> fixture;
@@ -16,11 +16,19 @@ void main() {
 
   tearDown(disposeAnyRunningTest);
 
-  */
+  test('Check for default size', () {
+    expect(fixture.assertOnlyInstance.size, 20);
+  });
 
-  test('template test', () {
-    appComponent.sizeInput = 1;
-    appComponent.onSubmit();
-    expect(appComponent.size, equals(20));
+  test('Check for too low input value', () async {
+    await fixture.update((c) => c.size = 1);
+    fixture.assertOnlyInstance.onSubmit();
+    expect(fixture.assertOnlyInstance.isSizeRight, false);
+  });
+
+  test('Check for too high input value', () async {
+    await fixture.update((c) => c.size = 101);
+    fixture.assertOnlyInstance.onSubmit();
+    expect(fixture.assertOnlyInstance.isSizeRight, false);
   });
 }
