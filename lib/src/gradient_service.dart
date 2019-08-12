@@ -1,15 +1,18 @@
 import 'package:angular_app/src/model/cell.dart';
+import 'package:meta/meta.dart';
 
 class GradientService {
   static final int PRIMARYCOLOR = 255;
 
-  int _calculateSteps(int n) {
+  @visibleForTesting
+  int calculateSteps(int n) {
     return (n * 2) - 2;
   }
 
-  List<String> _getColors(int n) {
+  @visibleForTesting
+  List<String> getColors(int n) {
     List<String> colorValues = [];
-    int steps = _calculateSteps(n);
+    int steps = calculateSteps(n);
     for (int i = steps; i >= 0; i--) {
       String gradientValue = (PRIMARYCOLOR * (i / steps)).toString();
       String value = '${PRIMARYCOLOR.toString()},$gradientValue,$gradientValue';
@@ -21,11 +24,11 @@ class GradientService {
   List<List<Cell>> createGradient(int n) {
     List<int> horizontalCharCodes = [64];
     List<List<Cell>> gradient = List(n + 1);
-    gradient[0] = _createVerticalMarkers(n);
-    List<String> colorValues = _getColors(n);
+    gradient[0] = createVerticalMarkers(n);
+    List<String> colorValues = getColors(n);
     for (int i = 0; i < n; i++) {
       List<Cell> row = List(n + 1);
-      horizontalCharCodes = _createHorizontalMarkerCodes(horizontalCharCodes);
+      horizontalCharCodes = createHorizontalMarkerCodes(horizontalCharCodes);
       row[0] = Cell.withMessage(
           String.fromCharCodes(horizontalCharCodes.reversed.toList()));
       for (int k = 0; k < n; k++) {
@@ -36,7 +39,8 @@ class GradientService {
     return gradient;
   }
 
-  List<Cell> _createVerticalMarkers(int n) {
+  @visibleForTesting
+  List<Cell> createVerticalMarkers(int n) {
     List<Cell> marker = List(n + 1);
     marker[0] = Cell();
     for (int i = 1; i < marker.length; i++) {
@@ -45,7 +49,8 @@ class GradientService {
     return marker;
   }
 
-  List<int> _createHorizontalMarkerCodes(List<int> horC) {
+  @visibleForTesting
+  List<int> createHorizontalMarkerCodes(List<int> horC) {
     for (int i = 0; i < horC.length; i++) {
       if (horC[i] < 90) {
         horC[i]++;
